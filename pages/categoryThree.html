@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MovieMood - Find Your Perfect Movie</title>
     <link rel="icon" href="/assets/favicon.png" type="image/png">
-    <link rel="stylesheet" href="/css/filter.css">
+    <link rel="stylesheet" href="/css/category.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -16,7 +16,7 @@
             </div>
             <nav class="nav-menu">
                 <a href="/index.html" class="nav-link">HOME</a>
-                <a href="/pages/filter.html" class="nav-link  active">FILTER</a>
+                <a href="pages/filter.html" class="nav-link active">FILTER</a>
                 <a href="pages/watchlist.html" class="nav-link">WATCHLIST</a>
                 <a href="pages/upcoming.html" class="nav-link">UPCOMING NEWS</a>
             </nav>
@@ -31,29 +31,25 @@
         </div>
     </header>
 
-    <!-- Select Category type -->
-    <main class="main-content">
-        <h1>Categories of Mood-Revealing Questions</h1>
-        <p>Select the category and answer the questions to find movie according to category!</p>
-        <h2>Select Category</h2>
-        <br>
-        <section class="category-section">
-            <div class="category-buttons">
-                <button class="category-btn" onclick="location.href='./categoryOne.html'" >
-                    Situational Emotion Check
-                    <img class="icon-btn" src="/assets/arrows.png" alt="">
-                </button>
-                <button class="category-btn" onclick="location.href='./categoryTwo.html'" >
-                    Energy & Engagement Level
-                    <img class="icon-btn" src="/assets/arrows.png" alt="">
-                </button>
-                <button class="category-btn" onclick="location.href='./categoryThree.html'" >
-                    Social Context
-                    <img class="icon-btn" src="/assets/arrows.png" alt="">
-                </button>
-            </div>
-        </section>
-  </main>
+        <!--Question Section -->
+    <main class="question-section">
+        <h1>Social Context</h1>
+        <p>Answer the questions to find a movie that matches your mood!</p>
+
+        <form class="question-form">
+            <label for="q1">1. Are you watching alone or with someone?</label>
+            <input type="text" id="q1" name="q1" placeholder="Type your answer..." />
+
+            <label for="q2">2. Is this a movie night with friends, family, or just you and snacks?</label>
+            <input type="text" id="q2" name="q2" placeholder="Type your answer..." />
+
+            <label for="q3">3. Would you prefer something romantic, thrilling, or family-friendly?</label>
+            <input type="text" id="q3" name="q3" placeholder="Type your answer..." />
+
+            <button type="submit" class="submit-btn">LET'S FIND!</button>
+        </form>
+        <div id="movie-results"></div>
+    </main>
 
     <!-- Footer Section -->
     <footer class="footer">
