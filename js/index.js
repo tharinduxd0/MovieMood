@@ -19,7 +19,7 @@ async function fetchTrendingMovies() {
         moviesGrid.innerHTML = '';
         if (!data.results || data.results.length === 0) throw new Error('No movies found');
 
-        data.results.slice(0, 8).forEach(movie => {
+        data.results.slice(0, 20).forEach(movie => {
             moviesGrid.appendChild(createMovieCard(movie));
         });
     } catch (error) {
