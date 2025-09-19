@@ -129,95 +129,9 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .header .container {
-        flex-direction: column;
-        gap: 20px;
-        text-align: center;
-    }
-
-    .nav-menu {
-        gap: 20px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .hero-title {
-        font-size: 22px;
-    }
-
-    .hero-content {
-        padding: 40px 20px;
-    }
-
-    .movies-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-        padding: 20px;
-    }
-
-    .movie-title {
-        font-size: 13px;
-    }
-
-    .movie-rating {
-        font-size: 11px;
-    }
-
-    .movie-year {
-        font-size: 10px;
-    }
-
-    .description-title {
-        font-size: 14px;
-    }
-
-    .description-text {
-        font-size: 12px;
-    }
-
-    .cta-button {
-        font-size: 20px;
-        padding: 12px 30px;
-    }
+    
 }
 
 @media (max-width: 480px) {
-    .movies-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        padding: 15px;
-    }
     
-    .nav-menu {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .nav-brand {
-        flex-direction: column;
-        gap: 10px;
-        text-align: center;
-    }
-
-    .hero-title {
-        font-size: 20px;
-    }
-
-    .hero-subtitle {
-        font-size: 16px;
-    }
-
-    .section-title {
-        font-size: 20px;
-    }
-
-    .movie-title {
-        font-size: 14px;
-        white-space: normal;
-        line-height: 1.2;
-    }
-
-    .movie-info {
-        padding: 12px 10px;
-    }
 }
