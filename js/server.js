@@ -65,7 +65,7 @@ app.post('/api/recommend-movies', async (req, res) => {
     });
 });
 
-// movie parsing
+//movie parsing
 function parseMovies(response) {
     const recommendations = [];
     const lines = response.split('\n').filter(line => line.trim());
