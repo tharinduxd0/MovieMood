@@ -3,24 +3,23 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 body {
-    font-family: "Alegreya Sans SC", sans-serif;
-    background: linear-gradient(135deg, #2d5016 0%, #4a7c59 50%, #2d5016 100%);
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, 
+#2d5016 0%, 
+#4a7c59 50%, 
+#2d5016 100%);
     min-height: 100vh;
     color: #ffffff;
     height: 100%;
     display: flex;
     flex-direction: column;
-
 }
-
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
-
 /* Header Styles */
 .header {
     background: rgba(45, 80, 22, 0.98);
@@ -30,38 +29,32 @@ body {
     top: 0;
     z-index: 100;
 }
-
 .header .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 15px 20px;
 }
-
 .nav-brand {
     display: flex;
     align-items: center;
     gap: 15px;
 }
-
 .logo {
     width: 50px;
     height: 50px;
     object-fit: contain;
 }
-
 .brand-text {
     font-size: 18px;
     font-weight: 700;
     line-height: 1.2;
     letter-spacing: 2px;
 }
-
 .nav-menu {
     display: flex;
     gap: 40px;
 }
-
 .nav-link {
     text-decoration: none;
     color: #ffffff;
@@ -71,12 +64,10 @@ body {
     transition: all 0.3s ease;
     position: relative;
 }
-
 .nav-link:hover,
 .nav-link.active {
     color: #7dd87f;
 }
-
 .nav-link.active::after {
     content: '';
     position: absolute;
@@ -86,12 +77,10 @@ body {
     height: 2px;
     background: #7dd87f;
 }
-
 .user-profile {
     display: flex;
     align-items: center;
 }
-
 .profile-icon {
     width: 50px;
     height: 50px;
@@ -103,7 +92,6 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
 }
-
 .profile-icon:hover {
     background: rgba(255, 255, 255, 0.2);
     transform: scale(1.05);
@@ -118,34 +106,44 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-align: left;
 }
-
 .question-section h1 {
   text-align: left;
   color: #2e7d32;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
 }
-
 .question-section p {
   font-size: 1.6rem;
+  color: #ffffff;
+  font-weight: 500;
 }
-
 .question-form {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
   margin-top: 2rem;
 }
-
 .question-form label {
   font-size: 1.5rem;
+  color: #ffffff;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }
-
 .question-form input {
   padding: 1.2rem;
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
 }
-
+.question-form input:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.2);
+}
 .submit-btn {
   display: block;
   margin: 2rem auto 0 auto;
@@ -154,35 +152,80 @@ body {
   border: none;
   padding: 0.8rem;
   font-size: 1rem;
+  font-weight: 600;
   width: 20%;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-family: 'Inter', sans-serif;
 }
-
 .submit-btn:hover {
   background-color: #388e3c;
 }
-
-
 /* Footer Styles */
 .footer {
     background: rgba(45, 80, 22, 0.98);
     text-align: center;
     padding: 48px 0 24px 0;
 }
-
 .footer p {
     color: #ffffff;
     font-size: 14px;
     opacity: 0.8;
 }
-
 /* Responsive Design */
 @media (max-width: 768px) {
-    
+    .header .container {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    .nav-menu {
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .question-section {
+        margin: 20px auto;
+        padding: 40px 20px;
+    }
+    .question-section h1 {
+        font-size: 20px;
+    }
+    .question-section p {
+        font-size: 16px;
+    }
+    .question-form label {
+        font-size: 14px;
+    }
+    .question-form input {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+    .submit-btn {
+        width: 160px;
+        font-size: 14px;
+        padding: 12px 30px;
+    }
 }
-
 @media (max-width: 480px) {
-    
+    .nav-menu {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .nav-brand {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    .question-section {
+        margin: 15px;
+        padding: 30px 15px;
+    }
+    .question-section h1 {
+        font-size: 18px;
+    }
+    .question-section p {
+        font-size: 14px;
+    }
 }
