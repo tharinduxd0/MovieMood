@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieMood - Your Movie Recommendations</title>
+    <link rel="icon" href="../assets/favicon.png" type="image/png">
+    <link rel="stylesheet" href="../css/result.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <img src="../assets/logo.png" alt="MovieMood Logo" style="height:80px;">
+            </div>
+            <nav class="nav-menu">
+                <a href="../index.html" class="nav-link">HOME</a>
+                <a href="../pages/filter.html" class="nav-link active">FILTER</a>
+                <a href="../pages/watchlist.html" class="nav-link">WATCHLIST</a>
+                <a href="../pages/upcoming.html" class="nav-link">UPCOMING NEWS</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <!-- Results Section -->
+            <section class="results-section">
+                <div class="results-header">
+                    <h1>Your Perfect Movie Matches</h1>
+                    <p class="results-subtitle">Based on your mood and preferences, here are your top 3 movie recommendations:</p>
+                </div>
+
+                <!-- Loading State -->
+                <div id="loading" class="loading-section">
+                    <div class="loading-spinner"></div>
+                    <p>Finding the perfect movies for your mood...</p>
+                </div>
+
+                <!-- Movie Results -->
+                <div id="movie-results" class="movie-results" style="display: none;">
+                </div>
+
+                <!-- Try Another Category -->
+                <div id="try-another" class="try-another-section" style="display: none;">
+                    <h3>Want to explore different moods?</h3>
+                    <div class="category-buttons">
+                        <a href="../pages/categoryOne.html" class="category-link-btn">
+                            Situational Emotion Check
+                        </a>
+                        <a href="../pages/categoryTwo.html" class="category-link-btn">
+                            Energy & Engagement Level
+                        </a>
+                        <a href="../pages/categoryThree.html" class="category-link-btn">
+                            Social Context
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 MovieMood. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/result.js"></script>
+</body>
+</html>
