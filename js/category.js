@@ -1,4 +1,4 @@
-// Category form handler
+// Main form
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.querySelector('.question-form');
     if (form) {
@@ -17,41 +17,35 @@ async function handleFormSubmit(event) {
     // Get all answers
     for (let i = 1; i <= 3; i++) {
         const answer = formData.get(`q${i}`);
-        if (!answer || answer.trim() === '') {
-            return; // Skip if answer missing
-        }
-        answers.push(answer.trim());
+        answers.push(answer);
     }
     
-    // Determine category based on page
+    // Get category
     const category = getCurrentCategory();
     
-    // Store data for results page
+    // Create data object
     const recommendationData = {
         answers: answers,
         category: category,
         timestamp: new Date().toISOString()
     };
     
-    sessionStorage.setItem('movieRecommendationData', JSON.stringify(recommendationData));
-    
     // Redirect to results page
     const encodedData = encodeURIComponent(JSON.stringify(recommendationData));
     window.location.href = `../pages/result.html?data=${encodedData}`;
 }
 
-// Determine current category based on page
+// Get current category
 function getCurrentCategory() {
     const path = window.location.pathname;
-    const title = document.querySelector('h1')?.textContent || '';
     
-    if (path.includes('categoryOne') || title.includes('Situational')) {
+    if (path.includes('categoryOne')) {
         return 'situational';
-    } else if (path.includes('categoryTwo') || title.includes('Energy')) {
+    } else if (path.includes('categoryTwo')) {
         return 'energy';
-    } else if (path.includes('categoryThree') || title.includes('Social')) {
+    } else if (path.includes('categoryThree')) {
         return 'social';
     }
     
-    return 'situational'; // Fallback
+    return 'situational';
 }
