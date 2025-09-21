@@ -6,7 +6,7 @@ const TMDB_IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 // Load trending movies on page load
 document.addEventListener('DOMContentLoaded', fetchTrendingMovies);
 
-// Fetch trending movies
+// Fetch trending movies from TMDB API
 async function fetchTrendingMovies() {
     const moviesGrid = document.getElementById('moviesGrid');
     moviesGrid.innerHTML = '<div class="loading">Loading trending movies...</div>';
@@ -32,7 +32,7 @@ async function fetchTrendingMovies() {
     }
 }
 
-// Create a movie card
+// Create movie card with watchlist button
 function createMovieCard(movie) {
     const card = document.createElement('div');
     card.className = 'movie-card';
@@ -67,10 +67,20 @@ function createMovieCard(movie) {
                 </div>
                 <div class="movie-year">${year}</div>
             </div>
+            <button class="watchlist-btn" onclick="addToWatchlist(this, '${movie.id}', '${movie.title.replace(/'/g, "\\'")}')">
+                + Watchlist
+            </button>
         </div>
     `;
     return card;
 }
 
-// Global error logging
+// Add movie to watchlist functionality
+function addToWatchlist(button, movieId, movieTitle) {
+    // Change button text and disable it
+    button.textContent = 'Added';
+    button.disabled = true;
+    button.classList.add('added');
+}
+//error logging
 window.addEventListener('error', e => console.error('Page error:', e.error));
