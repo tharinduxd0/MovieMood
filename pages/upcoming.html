@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Upcoming Movies - MovieMood</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/upcoming.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <img src="../assets/logo.png" alt="MovieMood Logo" style="height:80px;">
+      <nav class="nav-menu">
+        <a href="#" class="nav-link">HOME</a>
+        <a href="#" class="nav-link">FILTER</a>
+        <a href="#" class="nav-link">WATCHLIST</a>
+        <a href="#" class="nav-link active">UPCOMING NEWS</a>
+      </nav>
+      <div class="user-profile">
+        <div class="profile-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z" fill="currentColor" />
+            <path d="M12 14C7.58172 14 4 17.5817 4 22H20C20 17.5817 16.4183 14 12 14Z" fill="currentColor" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container">
+      <!-- Hero Section for Upcoming Movies -->
+      <section class="hero-section">
+        <div class="hero-content">
+          <h1 class="hero-title">DISCOVER WHAT'S COMING NEXT</h1>
+          <p class="hero-subtitle">GET READY FOR THE MOST ANTICIPATED MOVIES OF THE YEAR!</p>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number" id="totalMovies">0</span>
+              <span class="stat-label">Upcoming Movies</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number" id="thisMonth">0</span>
+              <span class="stat-label">This Month</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Filter Section -->
+      <section class="filter-section">
+        <div class="filter-container">
+          <h3>Filter by Release Date</h3>
+          <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterMovies('all', event)">All Upcoming</button>
+            <button class="filter-btn" onclick="filterMovies('this-month', event)">This Month</button>
+            <button class="filter-btn" onclick="filterMovies('next-month', event)">Next Month</button>
+            <button class="filter-btn" onclick="filterMovies('this-year', event)">This Year</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stats Display -->
+      <div id="stats"></div>
+
+      <!-- Upcoming Movies Section -->
+      <section class="movies-section">
+        <h2 class="section-title">Upcoming Movies</h2>
+        <div class="movies-grid" id="moviesGrid">
+          <div class="loading">Loading upcoming movies...</div>
+        </div>
+
+        <!-- Load More Button -->
+        <div class="load-more-container" id="loadMoreContainer" style="display: none;">
+          <button class="load-more-btn" onclick="loadMoreMovies()">Load More Movies</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Movie Details Modal -->
+  <div class="modal" id="movieModal">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal()">&times;</span>
+      <div class="modal-body" id="modalBody">
+        <div class="modal-loading">Loading movie details...</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 MovieMood. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="upcoming.js"></script>
+</body>
+</html>
