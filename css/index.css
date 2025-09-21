@@ -1,3 +1,4 @@
+/* Global Styles */
 * {
     margin: 0;
     padding: 0;
@@ -241,6 +242,7 @@ body {
     justify-content: space-between;
     align-items: center;
     gap: 10px;
+    margin-bottom: 12px;
 }
 
 .movie-rating {
@@ -262,6 +264,37 @@ body {
     font-size: 11px;
     color: #bbbbbb;
     font-weight: 400;
+}
+
+/* Watchlist Button */
+.watchlist-btn {
+    width: 100%;
+    padding: 8px 12px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.watchlist-btn:hover {
+    background: #45a049;
+    transform: translateY(-1px);
+}
+
+.watchlist-btn.added {
+    background: #7dd87f;
+    color: #2d5016;
+    cursor: not-allowed;
+}
+
+.watchlist-btn:disabled {
+    opacity: 0.8;
 }
 
 .movie-description {
@@ -405,6 +438,11 @@ body {
         font-size: 20px;
         padding: 12px 30px;
     }
+
+    .watchlist-btn {
+        font-size: 11px;
+        padding: 6px 10px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -445,5 +483,10 @@ body {
 
     .movie-info {
         padding: 12px 10px;
+    }
+
+    .watchlist-btn {
+        font-size: 10px;
+        padding: 6px 8px;
     }
 }

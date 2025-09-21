@@ -1,3 +1,4 @@
+/* Global Styles */
 * {
     margin: 0;
     padding: 0;
@@ -19,7 +20,7 @@ body {
     padding: 0 20px;
 }
 
-/* Header Styles */
+/* Header Styles - Matching index page exactly */
 .header {
     background: rgba(45, 80, 22, 0.98);
     backdrop-filter: blur(10px);
@@ -110,7 +111,7 @@ body {
 /* Main Content */
 .main-content {
     flex: 1;
-    padding: 2rem 0;
+    padding: 40px 0;
 }
 
 .back-section {
@@ -126,6 +127,7 @@ body {
     cursor: pointer;
     font-size: 16px;
     font-weight: 500;
+    font-family: 'Inter', sans-serif;
     transition: all 0.3s ease;
     text-decoration: none;
     display: inline-block;
@@ -150,6 +152,7 @@ body {
 .results-header h1 {
     font-size: 2.5rem;
     font-weight: 600;
+    font-family: 'Inter', sans-serif;
     margin-bottom: 1rem;
     color: #7dd87f;
     text-transform: uppercase;
@@ -158,6 +161,7 @@ body {
 
 .results-subtitle {
     font-size: 1.2rem;
+    font-family: 'Inter', sans-serif;
     color: #ffffff;
     opacity: 0.9;
     max-width: 600px;
@@ -188,6 +192,7 @@ body {
 
 .loading-section p {
     font-size: 1.2rem;
+    font-family: 'Inter', sans-serif;
     color: #7dd87f;
     font-weight: 500;
 }
@@ -210,11 +215,14 @@ body {
 .error-section h3 {
     color: #ff6b6b;
     font-size: 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
     margin-bottom: 1rem;
 }
 
 .error-section p {
     color: #ffffff;
+    font-family: 'Inter', sans-serif;
     margin-bottom: 2rem;
     opacity: 0.8;
 }
@@ -228,6 +236,7 @@ body {
     cursor: pointer;
     font-size: 16px;
     font-weight: 500;
+    font-family: 'Inter', sans-serif;
     transition: all 0.3s ease;
 }
 
@@ -297,6 +306,7 @@ body {
     margin: 0 auto;
     color: #ffffff;
     font-size: 1rem;
+    font-family: 'Inter', sans-serif;
     text-align: center;
     border: 2px dashed rgba(255, 255, 255, 0.3);
 }
@@ -308,6 +318,7 @@ body {
 .movie-title {
     font-size: 1.5rem;
     font-weight: 600;
+    font-family: 'Inter', sans-serif;
     color: #7dd87f;
     margin-bottom: 0.5rem;
     line-height: 1.3;
@@ -319,6 +330,7 @@ body {
     padding: 10px 15px;
     border-radius: 10px;
     font-style: italic;
+    font-family: 'Inter', sans-serif;
     margin-bottom: 1rem;
     border-left: 3px solid #7dd87f;
 }
@@ -337,14 +349,17 @@ body {
 
 .detail-label {
     font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
     color: #bbbbbb;
     margin-bottom: 0.3rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    font-weight: 500;
 }
 
 .detail-value {
     color: #ffffff;
+    font-family: 'Inter', sans-serif;
     font-weight: 500;
 }
 
@@ -366,6 +381,7 @@ body {
 
 .rating-number {
     color: #7dd87f;
+    font-family: 'Inter', sans-serif;
     font-weight: 600;
 }
 
@@ -382,16 +398,19 @@ body {
     padding: 4px 10px;
     border-radius: 15px;
     font-size: 0.8rem;
+    font-family: 'Inter', sans-serif;
     font-weight: 500;
 }
 
 .cast-list {
     color: #ffffff;
+    font-family: 'Inter', sans-serif;
     line-height: 1.4;
 }
 
 .movie-plot {
     color: #e0e0e0;
+    font-family: 'Inter', sans-serif;
     line-height: 1.6;
     margin-top: 1rem;
     text-align: justify;
@@ -414,6 +433,8 @@ body {
 
 .try-another-section h3 {
     font-size: 1.8rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
     color: #7dd87f;
     margin-bottom: 2rem;
 }
@@ -432,6 +453,7 @@ body {
     padding: 15px 25px;
     border-radius: 25px;
     font-weight: 500;
+    font-family: 'Inter', sans-serif;
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.3);
     display: inline-block;
@@ -443,21 +465,23 @@ body {
     transform: translateY(-2px);
 }
 
-/* Footer Styles */
+/* Footer Styles - Matching index page exactly */
 .footer {
     background: rgba(45, 80, 22, 0.98);
     text-align: center;
     padding: 20px 0;
     margin-top: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer p {
     color: #ffffff;
     font-size: 14px;
+    font-family: 'Inter', sans-serif;
     opacity: 0.8;
 }
 
-/* Responsive Design */
+/* Responsive Design - Matching index page exactly */
 @media (max-width: 768px) {
     .header .container {
         flex-direction: column;
@@ -499,6 +523,12 @@ body {
     .nav-menu {
         flex-direction: column;
         gap: 10px;
+    }
+
+    .nav-brand {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
     }
 
     .results-header h1 {

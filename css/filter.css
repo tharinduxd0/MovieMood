@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 body {
-    font-family: "Alegreya Sans SC", sans-serif;
+    font-family: 'Inter', sans-serif;
     background: linear-gradient(135deg, #2d5016 0%, #4a7c59 50%, #2d5016 100%);
     min-height: 100vh;
     color: #ffffff;
@@ -16,6 +16,17 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+}
+/*Filter Line spacing styles */
+.main-content h1 {
+    margin-bottom: 1rem;
+}
+.main-content p {
+    margin-bottom: 2rem;
+}
+.main-content h2 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 /* Header Styles */
 .header {
