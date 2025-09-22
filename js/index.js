@@ -84,3 +84,33 @@ function addToWatchlist(button, movieId, movieTitle) {
 }
 //error logging
 window.addEventListener('error', e => console.error('Page error:', e.error));
+function addToWatchlist(button, movieId, movieTitle) {
+    // Get parent movie card and its details
+    const movieCard = button.closest('.movie-card');
+    const poster = movieCard.querySelector('.movie-poster').src;
+    const rating = movieCard.querySelector('.movie-rating').textContent.trim();
+    const year = movieCard.querySelector('.movie-year').textContent.trim();
+
+    // Prepare movie data
+    const movieData = { id: movieId, title: movieTitle, poster, rating, year };
+
+    // Load existing watchlist from localStorage
+    const watchlist = JSON.parse(localStorage.getItem('movieWatchlist') || '[]');
+
+    // Prevent duplicate entries
+    if (watchlist.some(movie => movie.id === movieId)) {
+        button.textContent = 'Already Added';
+        button.disabled = true;
+        button.classList.add('added');
+        return;
+    }
+
+    // Add new movie to watchlist
+    watchlist.push(movieData);
+    localStorage.setItem('movieWatchlist', JSON.stringify(watchlist));
+
+    // Update button state
+    button.textContent = 'Added';
+    button.disabled = true;
+    button.classList.add('added');
+}
