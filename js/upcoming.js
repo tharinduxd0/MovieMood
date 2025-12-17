@@ -9,10 +9,10 @@ let currentPage = 1;
 let totalPages = 1;
 
 const moviesGrid = document.getElementById('moviesGrid');
-const totalMoviesEl = document.getElementById('totalMovies');
-const thisMonthEl = document.getElementById('thisMonth');
 const loadMoreContainer = document.getElementById('loadMoreContainer');
 const statsEl = document.getElementById('stats');
+const modal = document.getElementById('movieModal');
+const modalBody = document.getElementById('modalBody');
 
 document.addEventListener('DOMContentLoaded', () => {
   fetchUpcomingMovies();
@@ -33,7 +33,6 @@ async function fetchUpcomingMovies(page = 1) {
     currentPage = data.page;
 
     allUpcomingMovies = allUpcomingMovies.concat(data.results);
-    updateStats();
     applyFilter(currentFilter);
 
     if (currentPage < totalPages) {
@@ -45,19 +44,6 @@ async function fetchUpcomingMovies(page = 1) {
     moviesGrid.innerHTML = `<div class="error">Error loading movies. Please try again later.</div>`;
     console.error(error);
   }
-}
-
-function updateStats() {
-  totalMoviesEl.textContent = allUpcomingMovies.length;
-
-  const now = new Date();
-  const thisMonthCount = allUpcomingMovies.filter(movie => {
-    if (!movie.release_date) return false;
-    const releaseDate = new Date(movie.release_date);
-    return releaseDate.getMonth() === now.getMonth() && releaseDate.getFullYear() === now.getFullYear();
-  }).length;
-
-  thisMonthEl.textContent = thisMonthCount;
 }
 
 function applyFilter(filter) {
@@ -160,9 +146,6 @@ function loadMoreMovies() {
 }
 
 // Modal functionality
-const modal = document.getElementById('movieModal');
-const modalBody = document.getElementById('modalBody');
-
 async function openModal(movieId) {
   modal.style.display = 'block';
   modalBody.innerHTML = '<div class="modal-loading">Loading movie details...</div>';
