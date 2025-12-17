@@ -11,8 +11,6 @@ let totalPages = 1;
 const moviesGrid = document.getElementById('moviesGrid');
 const loadMoreContainer = document.getElementById('loadMoreContainer');
 const statsEl = document.getElementById('stats');
-const modal = document.getElementById('movieModal');
-const modalBody = document.getElementById('modalBody');
 
 document.addEventListener('DOMContentLoaded', () => {
   fetchUpcomingMovies();
@@ -33,6 +31,8 @@ async function fetchUpcomingMovies(page = 1) {
     currentPage = data.page;
 
     allUpcomingMovies = allUpcomingMovies.concat(data.results);
+
+    updateStats();
     applyFilter(currentFilter);
 
     if (currentPage < totalPages) {
@@ -44,6 +44,15 @@ async function fetchUpcomingMovies(page = 1) {
     moviesGrid.innerHTML = `<div class="error">Error loading movies. Please try again later.</div>`;
     console.error(error);
   }
+}
+
+function updateStats() {
+  const now = new Date();
+  const thisMonthCount = allUpcomingMovies.filter(movie => {
+    if (!movie.release_date) return false;
+    const releaseDate = new Date(movie.release_date);
+    return releaseDate.getMonth() === now.getMonth() && releaseDate.getFullYear() === now.getFullYear();
+  }).length;
 }
 
 function applyFilter(filter) {
@@ -81,27 +90,25 @@ function renderMovies(movies) {
     return;
   }
 
-  moviesGrid.innerHTML = movies.map(movie => {
+  // Render movie cards with staggered fade-in / slide-up animation
+  moviesGrid.innerHTML = movies.map((movie, index) => {
     const poster = movie.poster_path ? `${TMDB_IMAGE_BASE_URL}${movie.poster_path}` : 'https://via.placeholder.com/500x750?text=No+Image';
-    const releaseDate = movie.release_date ? new Date(movie.release_date).toLocaleDateString() : 'Unknown';
+    const releaseDate = movie.release_date ? new Date(movie.release_date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : 'Unknown';
     const overview = movie.overview ? movie.overview : 'No description available.';
     const rating = movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A';
 
     return `
-      <div class="movie-card" onclick="openModal(${movie.id})" title="Click for details">
+      <div class="movie-card" onclick="openModal(${movie.id})" title="Click for details" style="animation-delay: ${index * 0.05}s">
         <div class="movie-poster-container">
           <img class="movie-poster" src="${poster}" alt="${movie.title}" />
-          <div class="release-date-badge">${releaseDate}</div>
+          <div class="movie-poster-overlay">
+            <div class="overlay-release-date">Releasing: ${releaseDate}</div>
+            <div class="overlay-rating">⭐ ${rating}</div>
+          </div>
         </div>
         <div class="movie-info">
           <h3 class="movie-title">${movie.title}</h3>
           <p class="movie-overview">${overview}</p>
-          <div class="movie-details">
-            <div class="movie-rating">
-              <span class="rating-star">⭐</span>
-              <span class="rating-text">${rating}</span>
-            </div>
-          </div>
         </div>
       </div>
     `;
@@ -146,6 +153,9 @@ function loadMoreMovies() {
 }
 
 // Modal functionality
+const modal = document.getElementById('movieModal');
+const modalBody = document.getElementById('modalBody');
+
 async function openModal(movieId) {
   modal.style.display = 'block';
   modalBody.innerHTML = '<div class="modal-loading">Loading movie details...</div>';
@@ -155,20 +165,44 @@ async function openModal(movieId) {
     if (!response.ok) throw new Error('Failed to fetch movie details');
     const movie = await response.json();
 
-    const poster = movie.poster_path ? `${TMDB_IMAGE_BASE_URL}${movie.poster_path}` : 'https://via.placeholder.com/500x750?text=No+Image';
-    const releaseDate = movie.release_date ? new Date(movie.release_date).toLocaleDateString() : 'Unknown';
+    const backdropUrl = movie.backdrop_path ? `https://image.tmdb.org/t/p/original${movie.backdrop_path}` : 'https://via.placeholder.com/850x400?text=No+Backdrop';
+    const posterUrl = movie.poster_path ? `${TMDB_IMAGE_BASE_URL}${movie.poster_path}` : 'https://via.placeholder.com/220x330?text=No+Poster';
+    
+    const releaseDate = movie.release_date ? new Date(movie.release_date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : 'N/A';
     const genres = movie.genres.map(g => g.name).join(', ') || 'N/A';
     const rating = movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A';
+    const runtime = movie.runtime ? `${movie.runtime} min` : 'N/A';
 
     modalBody.innerHTML = `
-      <div class="modal-movie-details">
-        <img src="${poster}" alt="${movie.title}" class="modal-poster" />
-        <div class="modal-info">
-          <h2>${movie.title}</h2>
-          <p><strong>Release Date:</strong> ${releaseDate}</p>
-          <p><strong>Genres:</strong> ${genres}</p>
-          <p><strong>Rating:</strong> ⭐ ${rating}</p>
-          <p><strong>Overview:</strong> ${movie.overview || 'No description available.'}</p>
+      <div class="modal-header" style="background-image: url('${backdropUrl}')">
+        <div class="modal-header-content">
+          <h2 class="modal-movie-title">${movie.title}</h2>
+          <p class="modal-movie-tagline">${movie.tagline || ''}</p>
+        </div>
+      </div>
+      <div class="modal-main-content">
+        <div class="modal-poster-column">
+          <img src="${posterUrl}" alt="${movie.title}" class="modal-poster" />
+        </div>
+        <div class="modal-details-column">
+          <div class="modal-movie-details-grid">
+            <div class="detail-item">
+              <strong>Rating</strong>
+              <span>⭐ ${rating}</span>
+            </div>
+            <div class="detail-item">
+              <strong>Runtime</strong>
+              <span>${runtime}</span>
+            </div>
+            <div class="detail-item">
+              <strong>Release Date</strong>
+              <span>${releaseDate}</span>
+            </div>
+          </div>
+          <div class="modal-movie-overview">
+            <h4>Overview</h4>
+            <p>${movie.overview || 'No description available.'}</p>
+          </div>
         </div>
       </div>
     `;
