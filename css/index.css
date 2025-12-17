@@ -1,4 +1,6 @@
-/* Global Styles */
+/* =========================================
+   1. Global & Layout
+   ========================================= */
 * {
     margin: 0;
     padding: 0;
@@ -18,7 +20,13 @@ body {
     padding: 0 20px;
 }
 
-/* Header Styles */
+.main {
+    padding: 40px 0;
+}
+
+/* =========================================
+   2. Header
+   ========================================= */
 .header {
     background: rgba(45, 80, 22, 0.98);
     backdrop-filter: blur(10px);
@@ -39,19 +47,6 @@ body {
     display: flex;
     align-items: center;
     gap: 15px;
-}
-
-.logo {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
-}
-
-.brand-text {
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: 2px;
 }
 
 .nav-menu {
@@ -87,6 +82,7 @@ body {
 .user-profile {
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 .profile-icon {
@@ -106,12 +102,13 @@ body {
     transform: scale(1.05);
 }
 
-/* Main Content */
-.main {
-    padding: 40px 0;
+.profile-icon svg path {
+    fill: #ffffff;
 }
 
-/* Hero Section */
+/* =========================================
+   3. Hero Section
+   ========================================= */
 .hero-section {
     text-align: center;
     margin-bottom: 60px;
@@ -164,8 +161,11 @@ body {
     box-shadow: 0 10px 20px rgba(76, 175, 80, 0.3);
 }
 
-/* Trending Section */
-.trending-section {
+/* =========================================
+   4. Movie Grids & Trending
+   ========================================= */
+.trending-section, 
+.top-rated-section {
     margin-bottom: 60px;
 }
 
@@ -189,6 +189,9 @@ body {
     margin: 0 auto;
 }
 
+/* =========================================
+   5. Movie Cards (Shared Style)
+   ========================================= */
 .movie-card {
     position: relative;
     background: rgba(0, 0, 0, 0.8);
@@ -266,37 +269,7 @@ body {
     font-weight: 400;
 }
 
-/* Watchlist Button */
-.watchlist-btn {
-    width: 100%;
-    padding: 8px 12px;
-    background: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.watchlist-btn:hover {
-    background: #45a049;
-    transform: translateY(-1px);
-}
-
-.watchlist-btn.added {
-    background: #7dd87f;
-    color: #2d5016;
-    cursor: not-allowed;
-}
-
-.watchlist-btn:disabled {
-    opacity: 0.8;
-}
-
+/* Hover Description Overlay */
 .movie-description {
     position: absolute;
     top: 0;
@@ -339,6 +312,40 @@ body {
     -webkit-box-orient: vertical;
 }
 
+/* =========================================
+   6. Buttons & Interactions
+   ========================================= */
+.watchlist-btn {
+    width: 100%;
+    padding: 8px 12px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.watchlist-btn:hover {
+    background: #45a049;
+    transform: translateY(-1px);
+}
+
+.watchlist-btn.added {
+    background: #7dd87f;
+    color: #2d5016;
+    cursor: not-allowed;
+}
+
+.watchlist-btn:disabled {
+    opacity: 0.8;
+}
+
+/* Loading & Error States */
 .loading {
     text-align: center;
     padding: 40px;
@@ -371,7 +378,32 @@ body {
     background: #45a049;
 }
 
-/* Footer Styles */
+/* =========================================
+   7. Carousel (Top Rated)
+   ========================================= */
+.movies-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1.5rem;
+    padding-bottom: 1.5rem;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for Chrome/Safari */
+.movies-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.movies-carousel .movie-card {
+    flex: 0 0 calc(100% / 5 - 1.5rem);
+    scroll-snap-align: start;
+}
+
+/* =========================================
+   8. Footer
+   ========================================= */
 .footer {
     background: rgba(45, 80, 22, 0.98);
     text-align: center;
@@ -386,7 +418,9 @@ body {
     opacity: 0.8;
 }
 
-/* Responsive Design */
+/* =========================================
+   9. Responsive Design
+   ========================================= */
 @media (max-width: 768px) {
     .header .container {
         flex-direction: column;
@@ -414,41 +448,20 @@ body {
         padding: 20px;
     }
 
-    .movie-title {
-        font-size: 13px;
-    }
-
-    .movie-rating {
-        font-size: 11px;
-    }
-
-    .movie-year {
-        font-size: 10px;
-    }
-
-    .description-title {
-        font-size: 14px;
-    }
-
-    .description-text {
-        font-size: 12px;
+    /* Adjust Carousel for Mobile */
+    .movies-carousel .movie-card {
+        flex: 0 0 calc(100% / 2 - 1rem); /* Show 2 movies on tablet/mobile */
     }
 
     .cta-button {
         font-size: 20px;
         padding: 12px 30px;
     }
-
-    .watchlist-btn {
-        font-size: 11px;
-        padding: 6px 10px;
-    }
 }
 
 @media (max-width: 480px) {
     .movies-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
         padding: 15px;
     }
     
@@ -460,33 +473,15 @@ body {
     .nav-brand {
         flex-direction: column;
         gap: 10px;
-        text-align: center;
     }
 
-    .hero-title {
-        font-size: 20px;
-    }
-
-    .hero-subtitle {
-        font-size: 16px;
-    }
-
-    .section-title {
-        font-size: 20px;
+    /* Adjust Carousel for Small Screens */
+    .movies-carousel .movie-card {
+        flex: 0 0 calc(100% - 2rem); /* Show 1 movie on small screens */
     }
 
     .movie-title {
         font-size: 14px;
         white-space: normal;
-        line-height: 1.2;
-    }
-
-    .movie-info {
-        padding: 12px 10px;
-    }
-
-    .watchlist-btn {
-        font-size: 10px;
-        padding: 6px 8px;
     }
 }

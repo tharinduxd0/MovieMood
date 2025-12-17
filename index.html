@@ -15,7 +15,7 @@
                 <img src="assets/logo.png" alt="MovieMood Logo" style="height:80px;">
             </div>
             <nav class="nav-menu">
-                <a href="#" class="nav-link active">HOME</a>
+                <a href="index.html" class="nav-link active">HOME</a>
                 <a href="pages/filter.html" class="nav-link">FILTER</a>
                 <a href="pages/watchlist.html" class="nav-link">WATCHLIST</a>
                 <a href="pages/upcoming.html" class="nav-link">UPCOMING NEWS</a>
@@ -32,19 +32,23 @@
     </header>
     <main class="main">
         <div class="container">
-            <!-- Hero Section -->
             <section class="hero-section">
                 <div class="hero-content">
-                    <h1 class="hero-title">LET'S FIND. WHICH TYPE OF MOVIE YOU WANT TO WATCH<br>ACCORDING TO YOUR CURRENT MOOD...</h1>
+                    <h1 class="hero-title">LET'S FIND WHICH TYPE OF MOVIE YOU WANT TO WATCH<br>ACCORDING TO YOUR CURRENT MOOD...</h1>
                     <p class="hero-subtitle">ANSWER THE QUESTION AND FIND OUT YOUR MOVIE!</p>
                     <a href="pages/filter.html" class="cta-button">LET'S GO!</a>
                 </div>
             </section>
-            <!-- Trending Movies Section -->
             <section class="trending-section">
-                <h2 class="section-title">Today Trending Movies</h2>
+                <h2 class="section-title">Today's Trending Movies</h2>
                 <div class="movies-grid" id="moviesGrid">
                     <div class="loading">Loading trending movies...</div>
+                </div>
+            </section>
+            <section class="top-rated-section">
+                <h2 class="section-title">Top Rated Movies</h2>
+                <div class="movies-carousel" id="topRatedCarousel">
+                    <div class="loading">Loading top rated movies...</div>
                 </div>
             </section>
         </div>

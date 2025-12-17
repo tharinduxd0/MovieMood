@@ -3,12 +3,20 @@ const TMDB_API_KEY = 'f535b3af53df71c58b7219a11606a186';
 const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
 const TMDB_IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 
-// Load trending movies on page load
-document.addEventListener('DOMContentLoaded', fetchTrendingMovies);
+// Load BOTH sections on page load
+document.addEventListener('DOMContentLoaded', () => {
+    fetchTrendingMovies();
+    fetchTopRatedMovies();
+});
+
+// Global Error Logging
+window.addEventListener('error', e => console.error('Page error:', e.error));
 
 // Fetch trending movies from TMDB API
 async function fetchTrendingMovies() {
     const moviesGrid = document.getElementById('moviesGrid');
+    if (!moviesGrid) return;
+
     moviesGrid.innerHTML = '<div class="loading">Loading trending movies...</div>';
 
     try {
@@ -27,6 +35,47 @@ async function fetchTrendingMovies() {
             <div class="error">
                 <p>Error loading movies: ${error.message}</p>
                 <button onclick="fetchTrendingMovies()">Retry</button>
+            </div>
+        `;
+    }
+}
+
+// Fetch top-rated movies from TMDB API
+async function fetchTopRatedMovies() {
+    const carousel = document.getElementById('topRatedCarousel');
+    if (!carousel) return;
+    
+    carousel.innerHTML = '<div class="loading">Loading top rated movies...</div>';
+
+    try {
+        const fiveYearsAgo = new Date();
+        fiveYearsAgo.setFullYear(fiveYearsAgo.getFullYear() - 5);
+        const releaseDateGte = fiveYearsAgo.toISOString().split('T')[0];
+
+        const response = await fetch(
+            `${TMDB_BASE_URL}/discover/movie?` +
+            `api_key=${TMDB_API_KEY}` +
+            `&sort_by=vote_average.desc` +
+            `&primary_release_date.gte=${releaseDateGte}` +
+            `&vote_count.gte=1000`
+        );
+
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+        const data = await response.json();
+        carousel.innerHTML = '';
+
+        if (!data.results || data.results.length === 0) throw new Error('No movies found');
+
+        data.results.forEach(movie => {
+            carousel.appendChild(createMovieCard(movie));
+        });
+
+    } catch (error) {
+        carousel.innerHTML = `
+            <div class="error">
+                <p>Error loading movies: ${error.message}</p>
+                <button onclick="fetchTopRatedMovies()">Retry</button>
             </div>
         `;
     }
@@ -77,27 +126,14 @@ function createMovieCard(movie) {
 
 // Add movie to watchlist functionality
 function addToWatchlist(button, movieId, movieTitle) {
-    // Change button text and disable it
-    button.textContent = 'Added';
-    button.disabled = true;
-    button.classList.add('added');
-}
-//error logging
-window.addEventListener('error', e => console.error('Page error:', e.error));
-function addToWatchlist(button, movieId, movieTitle) {
-    // Get parent movie card and its details
     const movieCard = button.closest('.movie-card');
     const poster = movieCard.querySelector('.movie-poster').src;
     const rating = movieCard.querySelector('.movie-rating').textContent.trim();
     const year = movieCard.querySelector('.movie-year').textContent.trim();
 
-    // Prepare movie data
     const movieData = { id: movieId, title: movieTitle, poster, rating, year };
-
-    // Load existing watchlist from localStorage
     const watchlist = JSON.parse(localStorage.getItem('movieWatchlist') || '[]');
 
-    // Prevent duplicate entries
     if (watchlist.some(movie => movie.id === movieId)) {
         button.textContent = 'Already Added';
         button.disabled = true;
@@ -105,11 +141,9 @@ function addToWatchlist(button, movieId, movieTitle) {
         return;
     }
 
-    // Add new movie to watchlist
     watchlist.push(movieData);
     localStorage.setItem('movieWatchlist', JSON.stringify(watchlist));
 
-    // Update button state
     button.textContent = 'Added';
     button.disabled = true;
     button.classList.add('added');
