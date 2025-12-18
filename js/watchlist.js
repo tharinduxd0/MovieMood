@@ -40,7 +40,7 @@ function saveWatchlistToStorage(watchlist) {
 // Build movie card element
 function createWatchlistMovieCard(movie) {
     const card = document.createElement('div');
-    card.className = 'movie-card';
+    card.className = `movie-card ${movie.watched ? 'watched' : ''}`;
     card.setAttribute('data-movie-id', movie.id);
 
     card.innerHTML = `
@@ -59,9 +59,14 @@ function createWatchlistMovieCard(movie) {
                 </div>
                 <div class="movie-year">${movie.year}</div>
             </div>
-            <button class="remove-btn" onclick="removeFromWatchlist('${movie.id}')">
-                Remove
-            </button>
+            <div class="movie-actions">
+                <button class="watched-btn" onclick="toggleWatchedStatus('${movie.id}')">
+                    ${movie.watched ? 'Unwatch' : 'Mark as Watched'}
+                </button>
+                <button class="remove-btn" onclick="removeFromWatchlist('${movie.id}')">
+                    Remove
+                </button>
+            </div>
         </div>
     `;
     return card;
@@ -78,5 +83,16 @@ function removeFromWatchlist(movieId) {
 // Clear all movies
 function clearAllWatchlist() {
     localStorage.removeItem('movieWatchlist');
+    loadWatchlist();
+}
+
+// Toggle watched status
+function toggleWatchedStatus(movieId) {
+    let watchlist = getWatchlistFromStorage();
+    const movie = watchlist.find(m => m.id === movieId);
+    if (movie) {
+        movie.watched = !movie.watched;
+    }
+    saveWatchlistToStorage(watchlist);
     loadWatchlist();
 }
