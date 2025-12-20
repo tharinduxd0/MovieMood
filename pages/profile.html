@@ -3,9 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoodMovie Profile</title>
+    <title>MovieMood - My Profile</title>
+    <link rel="icon" href="../assets/favicon.png" type="image/png">
+    <link rel="stylesheet" href="../css/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <img src="../assets/logo.png" alt="MovieMood Logo" style="height:80px;">
+            </div>
+            <nav class="nav-menu">
+                <a href="../index.html" class="nav-link">HOME</a>
+                <a href="filter.html" class="nav-link">FILTER</a>
+                <a href="watchlist.html" class="nav-link">WATCHLIST</a>
+                <a href="upcoming.html" class="nav-link">UPCOMING NEWS</a>
+            </nav>
+            <!-- User Profile with Dropdown -->
+            <div class="user-profile">
+                <div class="profile-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z" fill="currentColor"/>
+                        <path d="M12 14C7.58172 14 4 17.5817 4 22H20C20 17.5817 16.4183 14 12 14Z" fill="currentColor"/>
+                    </svg>
+                </div>
+                <div class="profile-dropdown">
+                    <!-- This will be populated by main.js -->
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="main">
+        <div class="container">
+            <h1>My Profile</h1>
+            <p>This page is under construction.</p>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 MovieMood. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="../js/main.js"></script>
+    <!-- Firebase V8 SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/auth.js"></script>
 </body>
 </html>
