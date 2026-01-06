@@ -43,3 +43,34 @@ body {
   outline: none;
   font-size: 14px;
 }
+
+.signup-container button {
+  width: 100%;
+  padding: 13px;
+  background: #1b3a1b;
+  color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.signup-container button:hover {
+  background: #134013;
+}
+
+.switch {
+  margin-top: 18px;
+  font-size: 14px;
+}
+
+.switch a {
+  color: #1b3a1b;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.switch a:hover {
+  text-decoration: underline;
+}
