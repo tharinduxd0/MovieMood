@@ -56,3 +56,28 @@ input {
   text-decoration: none;
   display: inline-block;
 }
+
+.btn:hover {
+  background: #145214;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid #1b3a1b;
+  color: #1b3a1b;
+}
+
+.btn-outline:hover {
+  background: #1b3a1b;
+  color: white;
+}
+
+.switch {
+  margin-top: 15px;
+}
+
+.switch a {
+  color: #1b3a1b;
+  font-weight: bold;
+  text-decoration: none;
+}
