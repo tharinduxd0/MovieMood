@@ -21,3 +21,15 @@ body {
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.35);
   text-align: center;
 }
+
+.signup-container h1 {
+  color: #1b3a1b;
+  margin-bottom: 10px;
+  font-size: 26px;
+}
+
+.signup-container p {
+  color: #234d23;
+  margin-bottom: 25px;
+  font-size: 14px;
+}
