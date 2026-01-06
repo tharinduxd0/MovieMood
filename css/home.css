@@ -39,3 +39,20 @@ input {
   border: none;
   outline: none;
 }
+
+.btn-group {
+  display: flex;
+  gap: 15px;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  background: #1b3a1b;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
