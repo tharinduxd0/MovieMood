@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1b3a1b, #2a5f2a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signin-container {
+  background: #6fcf7a;
+  width: 360px;
+  padding: 40px 30px;
+  border-radius: 14px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+  text-align: center;
+}
