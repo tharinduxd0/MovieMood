@@ -33,3 +33,13 @@ body {
   margin-bottom: 25px;
   font-size: 14px;
 }
+
+.signup-container input {
+  width: 100%;
+  padding: 13px 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
