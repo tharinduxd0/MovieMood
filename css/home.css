@@ -13,4 +13,13 @@ body {
   justify-content: center;
 }
 
+.auth-container {
+  background: #6fcf7a;
+  padding: 40px;
+  width: 350px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
 
