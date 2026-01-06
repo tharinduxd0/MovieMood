@@ -21,3 +21,50 @@ body {
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
   text-align: center;
 }
+
+.signin-container h1 {
+  color: #1b3a1b;
+  margin-bottom: 15px;
+  font-size: 25px;
+}
+
+.signin-container input {
+  width: 100%;
+  padding: 13px 15px;
+  margin-bottom: 18px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+.signin-container button {
+  width: 100%;
+  padding: 13px;
+  background: #1b3a1b;
+  color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.signin-container button:hover {
+  background: #134013;
+}
+
+.switch {
+  margin-top: 18px;
+  font-size: 14px;
+}
+
+.switch a {
+  color: #1b3a1b;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.switch a:hover {
+  text-decoration: underline;
+}
