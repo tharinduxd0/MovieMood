@@ -269,7 +269,7 @@ body {
     font-weight: 400;
 }
 
-/* Hover Description Overlay */
+
 .movie-description {
     position: absolute;
     top: 0;
@@ -345,7 +345,6 @@ body {
     opacity: 0.8;
 }
 
-/* Loading & Error States */
 .loading {
     text-align: center;
     padding: 40px;
@@ -387,11 +386,10 @@ body {
     scroll-snap-type: x mandatory;
     gap: 1.5rem;
     padding-bottom: 1.5rem;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
 }
 
-/* Hide scrollbar for Chrome/Safari */
 .movies-carousel::-webkit-scrollbar {
     display: none;
 }
@@ -448,9 +446,9 @@ body {
         padding: 20px;
     }
 
-    /* Adjust Carousel for Mobile */
+    
     .movies-carousel .movie-card {
-        flex: 0 0 calc(100% / 2 - 1rem); /* Show 2 movies on tablet/mobile */
+        flex: 0 0 calc(100% / 2 - 1rem);
     }
 
     .cta-button {
@@ -475,13 +473,47 @@ body {
         gap: 10px;
     }
 
-    /* Adjust Carousel for Small Screens */
     .movies-carousel .movie-card {
-        flex: 0 0 calc(100% - 2rem); /* Show 1 movie on small screens */
+        flex: 0 0 calc(100% - 2rem);
     }
 
     .movie-title {
         font-size: 14px;
         white-space: normal;
     }
+}
+
+/* =========================================
+   10. Profile Dropdown
+   ========================================= */
+.profile-dropdown {
+    display: none;
+    position: absolute;
+    top: 65px;
+    right: 0;
+    width: 150px;
+    background: #2d5016;
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    z-index: 110;
+    border: 1px solid #4a7c59;
+    padding: 5px 0;
+}
+
+.profile-dropdown a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #7dd87f;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.profile-dropdown a:hover {
+    background-color: #4a7c59;
+    color: #ffffff;
+}
+
+.profile-dropdown a:first-child {
+    border-bottom: 1px solid #4a7c59;
 }
