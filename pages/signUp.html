@@ -12,8 +12,8 @@
 
   <form onsubmit="signup(event)">
     <input type="text" placeholder="Full Name" required>
-    <input type="email" placeholder="Email" required>
-    <input type="password" placeholder="Password" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="password" id="password" placeholder="Password" required>
     <input type="password" placeholder="Confirm Password" required>
 
     <button type="submit" class="btn">Sign Up</button>
@@ -22,6 +22,9 @@
     Already have an account? <a href="signin.html">Sign In</a>
   </p>
 </div>
-    <script src="home.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/signUp.js"></script>
 </body>
 </html>

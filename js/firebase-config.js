@@ -1,5 +1,3 @@
-import { initializeApp } from "firebase/app";
-
 //Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAGZC3CXXMGGILhEUlgVDn6wpT7MTMTJbM",
@@ -9,5 +7,3 @@ const firebaseConfig = {
   messagingSenderId: "431597643962",
   appId: "1:431597643962:web:ebaa6e2f5faaf5f1daba83"
 };
-
-const app = initializeApp(firebaseConfig);

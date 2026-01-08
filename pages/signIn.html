@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In | MovieMood</title>
+    <link rel="stylesheet" href="../css/signIn.css">
 </head>
 <body>
     <div class="auth-container">
   <h1>Welcome Back</h1>
 
   <form onsubmit="signin(event)">
-    <input type="email" placeholder="Email" required>
-    <input type="password" placeholder="Password" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="password" id="password" placeholder="Password" required>
 
     <button type="submit" class="btn">Sign In</button>
   </form>
@@ -20,5 +21,9 @@
     Don’t have an account? <a href="signup.html">Sign Up</a>
   </p>
 </div>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/signIn.js"></script>
 </body>
 </html>
