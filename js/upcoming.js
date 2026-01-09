@@ -25,7 +25,7 @@ async function fetchUpcomingMovies(page = 1) {
   }
 
   try {
-    const response = await fetch(`${TMDB_BASE_URL}/movie/upcoming?api_key=${TMDB_API_KEY}&language=en-US&page=${page}`);
+    const response = await fetch(`${TMDB_BASE_URL}/movie/upcoming?api_key=${TMDB_API_KEY}&language=en-US&page=${page}&include_adult=false`);
     if (!response.ok) throw new Error('Failed to fetch movies');
     const data = await response.json();
 
@@ -151,7 +151,7 @@ async function openModal(movieId) {
   modalBody.innerHTML = '<div class="modal-loading">Loading movie details...</div>';
 
   try {
-    const response = await fetch(`${TMDB_BASE_URL}/movie/${movieId}?api_key=${TMDB_API_KEY}&language=en-US`);
+    const response = await fetch(`${TMDB_BASE_URL}/movie/${movieId}?api_key=${TMDB_API_KEY}&language=en-US&include_adult=false`);
     if (!response.ok) throw new Error('Failed to fetch movie details');
     const movie = await response.json();
 

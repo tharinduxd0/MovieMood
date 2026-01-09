@@ -86,7 +86,7 @@ function parseMovies(response) {
 // Get movie details
 async function getMovieDetails(movieTitle) {
     // Search for movie
-    const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(movieTitle)}`;
+    const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(movieTitle)}&include_adult=false`;
     const searchResponse = await fetch(searchUrl);
     const searchData = await searchResponse.json();
     

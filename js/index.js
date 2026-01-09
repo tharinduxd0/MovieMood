@@ -20,7 +20,7 @@ async function fetchTrendingMovies() {
     moviesGrid.innerHTML = '<div class="loading">Loading trending movies...</div>';
 
     try {
-        const response = await fetch(`${TMDB_BASE_URL}/trending/movie/week?api_key=${TMDB_API_KEY}`);
+        const response = await fetch(`${TMDB_BASE_URL}/trending/movie/week?api_key=${TMDB_API_KEY}&include_adult=false`);
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
         const data = await response.json();
@@ -57,7 +57,8 @@ async function fetchTopRatedMovies() {
             `api_key=${TMDB_API_KEY}` +
             `&sort_by=vote_average.desc` +
             `&primary_release_date.gte=${releaseDateGte}` +
-            `&vote_count.gte=1000`
+            `&vote_count.gte=1000` +
+            `&include_adult=false`
         );
 
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
