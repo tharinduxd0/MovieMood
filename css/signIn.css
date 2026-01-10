@@ -3,22 +3,12 @@ body {
     font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #0bd444aa 0%, #27a754 50%, #09832f 100%);
+    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #2c2c2c 100%);
     color: #ffffff;
     overflow-x: hidden;
     position: relative;
 }
 
-.background-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="10" fill="%23000"/><rect y="20" width="100" height="10" fill="%23000"/><rect y="40" width="100" height="10" fill="%23000"/><rect y="60" width="100" height="10" fill="%23000"/><rect y="80" width="100" height="10" fill="%23000"/></svg>') repeat;
-    opacity: 0.1;
-    z-index: -1;
-}
 /* Cinematic Background Container */
 .cinematic-bg {
     position: fixed;
@@ -84,31 +74,30 @@ body {
     100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1.1); }
 }
 
-/* Existing Background Overlay (Enhanced) */
+
+@keyframes film-strip-move {
+    0% { background-position: 0 0; }
+    100% { background-position: 40px 0; }
+}
+
+
 .background-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: 
-        repeating-linear-gradient(90deg, rgba(125, 216, 127, 0.1) 0px, rgba(125, 216, 127, 0.1) 20px, transparent 20px, transparent 40px),
-        linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.8) 100%);
-    opacity: 0.6;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="10" fill="%23000"/><rect y="20" width="100" height="10" fill="%23000"/><rect y="40" width="100" height="10" fill="%23000"/><rect y="60" width="100" height="10" fill="%23000"/><rect y="80" width="100" height="10" fill="%23000"/></svg>') repeat;
+    opacity: 0.1;
     z-index: -1;
-    animation: film-strip-move 5s linear infinite;
 }
 
-@keyframes film-strip-move {
-    0% { background-position: 0 0; }
-    100% { background-position: 40px 0; }
-}
 /* Header */
 .header {
-    background: rgba(3, 49, 10, 0.519);
+    background: rgba(30, 255, 22, 0.237);
     backdrop-filter: blur(10px);
     padding: 20px 0;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 20px rgba(24, 161, 74, 0.5);
 }
 
 .nav-brand img {
@@ -149,7 +138,7 @@ body {
     width: 100%;
     height: 10px;
     background: repeating-linear-gradient(90deg, #7dd87f 0px, #7dd87f 20px, transparent 20px, transparent 40px);
-    animation: film-roll 10s linear infinite;
+    animation: film-roll 2s linear infinite;
 }
 
 @keyframes film-roll {

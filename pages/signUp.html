@@ -8,8 +8,16 @@
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/signUp.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <!-- Cinematic Background Layers (No Theater Curtain) -->
+    <div class="cinematic-bg">
+        <div class="film-reel left"></div>
+        <div class="film-reel right"></div>
+        <div class="spotlight"></div>
+    </div>
+    <div class="background-overlay"></div>
     <header class="header">
         <div class="container">
             <div class="nav-brand">
@@ -21,28 +29,36 @@
     </header>
     <main class="main">
         <div class="auth-container">
-            <h1>Create Your Account</h1>
+            <div class="film-strip"></div>
+            <h1><i class="fas fa-user-plus"></i> Create Your Account</h1>
             <p>Join MovieMood to discover and track your favorite movies.</p>
             <form onsubmit="signup(event)">
                 <div class="input-group">
-                    <input type="text" placeholder="Full Name" required>
+                    <label for="name"><i class="fas fa-user"></i> Full Name</label>
+                    <input type="text" id="name" placeholder="Enter your full name" required>
                 </div>
                 <div class="input-group">
-                    <input type="email" id="email" placeholder="Email" required>
+                    <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
                 </div>
                 <div class="input-group">
-                    <input type="password" id="password" placeholder="Password" required>
+                    <label for="password"><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
                 </div>
                 <div class="input-group">
-                    <input type="password" placeholder="Confirm Password" required>
+                    <label for="confirmPassword"><i class="fas fa-lock"></i> Confirm Password</label>
+                    <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
                 </div>
-                <button type="submit" class="btn">Sign Up</button>
+                <button type="submit" class="btn"><i class="fas fa-user-plus"></i> Sign Up</button>
             </form>
             <p class="switch">
                 Already have an account? <a href="signIn.html">Sign In</a>
             </p>
         </div>
     </main>
+    <div class="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="../js/firebase-config.js"></script>
