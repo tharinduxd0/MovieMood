@@ -424,3 +424,38 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* =========================================
+   10. Profile Dropdown
+   ========================================= */
+.profile-dropdown {
+    display: none;
+    position: absolute;
+    top: 65px;
+    right: 0;
+    width: 150px;
+    background: #2d5016;
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    z-index: 110;
+    border: 1px solid #4a7c59;
+    padding: 5px 0;
+}
+
+.profile-dropdown a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #7dd87f;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.profile-dropdown a:hover {
+    background-color: #4a7c59;
+    color: #ffffff;
+}
+
+.profile-dropdown a:first-child {
+    border-bottom: 1px solid #4a7c59;
+}
