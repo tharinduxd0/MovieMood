@@ -269,11 +269,7 @@ body {
     font-weight: 400;
 }
 
-<<<<<<< HEAD
 
-=======
-/* Hover Description Overlay */
->>>>>>> eea6983 (Implemented hero section with title, subtitle)
 .movie-description {
     position: absolute;
     top: 0;
@@ -349,10 +345,6 @@ body {
     opacity: 0.8;
 }
 
-<<<<<<< HEAD
-=======
-/* Loading & Error States */
->>>>>>> eea6983 (Implemented hero section with title, subtitle)
 .loading {
     text-align: center;
     padding: 40px;
@@ -394,18 +386,10 @@ body {
     scroll-snap-type: x mandatory;
     gap: 1.5rem;
     padding-bottom: 1.5rem;
-<<<<<<< HEAD
     -ms-overflow-style: none; 
     scrollbar-width: none; 
 }
 
-=======
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-}
-
-/* Hide scrollbar for Chrome/Safari */
->>>>>>> eea6983 (Implemented hero section with title, subtitle)
 .movies-carousel::-webkit-scrollbar {
     display: none;
 }
@@ -462,15 +446,9 @@ body {
         padding: 20px;
     }
 
-<<<<<<< HEAD
     
     .movies-carousel .movie-card {
         flex: 0 0 calc(100% / 2 - 1rem);
-=======
-    /* Adjust Carousel for Mobile */
-    .movies-carousel .movie-card {
-        flex: 0 0 calc(100% / 2 - 1rem); /* Show 2 movies on tablet/mobile */
->>>>>>> eea6983 (Implemented hero section with title, subtitle)
     }
 
     .cta-button {
@@ -495,21 +473,14 @@ body {
         gap: 10px;
     }
 
-<<<<<<< HEAD
     .movies-carousel .movie-card {
         flex: 0 0 calc(100% - 2rem);
-=======
-    /* Adjust Carousel for Small Screens */
-    .movies-carousel .movie-card {
-        flex: 0 0 calc(100% - 2rem); /* Show 1 movie on small screens */
->>>>>>> eea6983 (Implemented hero section with title, subtitle)
     }
 
     .movie-title {
         font-size: 14px;
         white-space: normal;
     }
-<<<<<<< HEAD
 }
 
 /* =========================================
@@ -545,6 +516,4 @@ body {
 
 .profile-dropdown a:first-child {
     border-bottom: 1px solid #4a7c59;
-=======
->>>>>>> eea6983 (Implemented hero section with title, subtitle)
 }
