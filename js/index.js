@@ -57,8 +57,12 @@ async function fetchTopRatedMovies() {
             `api_key=${TMDB_API_KEY}` +
             `&sort_by=vote_average.desc` +
             `&primary_release_date.gte=${releaseDateGte}` +
+<<<<<<< HEAD
             `&vote_count.gte=1000` +
             `&include_adult=false`
+=======
+            `&vote_count.gte=1000`
+>>>>>>> eea6983 (Implemented hero section with title, subtitle)
         );
 
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
