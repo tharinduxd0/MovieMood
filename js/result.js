@@ -121,10 +121,65 @@ function createMovieCard(movie) {
             <div class="movie-plot">
                 <strong>Plot:</strong> ${movie.overview || 'Plot not available.'}
             </div>
+            <button class="watchlist-btn">
+                + Watchlist
+            </button>
         </div>
     `;
+
+    const watchlistBtn = card.querySelector('.watchlist-btn');
+    watchlistBtn.addEventListener('click', () => {
+        addToWatchlist(watchlistBtn, movie);
+    });
     
     return card;
+}
+
+// Add movie to watchlist functionality
+function addToWatchlist(button, movie) {
+    const user = firebase.auth().currentUser;
+    
+    if (!user) {
+        alert("You need to sign in before using this feature");
+        return;
+    }
+
+    const movieData = { 
+        id: String(movie.id), 
+        title: movie.title, 
+        poster: movie.poster_path || '', 
+        rating: movie.vote_average ? String(movie.vote_average.toFixed(1)) : 'N/A', 
+        year: String(movie.year),
+        watched: false,
+        addedAt: firebase.firestore.FieldValue.serverTimestamp()
+    };
+
+    const watchlistRef = db.collection('users').doc(user.uid).collection('watchlist').doc(String(movie.id));
+
+    button.disabled = true;
+    button.textContent = 'Checking...';
+
+    watchlistRef.get().then((doc) => {
+        if (doc.exists) {
+            button.textContent = 'Already Added';
+            button.classList.add('added');
+        } else {
+            watchlistRef.set(movieData)
+                .then(() => {
+                    button.textContent = 'Added';
+                    button.classList.add('added');
+                })
+                .catch((error) => {
+                    console.error("Error adding to watchlist: ", error);
+                    button.disabled = false;
+                    button.textContent = '+ Watchlist';
+                });
+        }
+    }).catch((error) => {
+        console.error("Error checking watchlist: ", error);
+        button.disabled = false;
+        button.textContent = '+ Watchlist';
+    });
 }
 
 // Generate star rating HTML

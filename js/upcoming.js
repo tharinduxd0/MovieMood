@@ -90,13 +90,66 @@ async function openModal(movieId) {
             <h4>Overview</h4>
             <p>${movie.overview || 'No description available.'}</p>
           </div>
+          <button class="watchlist-btn modal-watchlist-btn">
+            + Add to Watchlist
+          </button>
         </div>
       </div>
     `;
+
+    const watchlistBtn = modalBody.querySelector('.modal-watchlist-btn');
+    watchlistBtn.addEventListener('click', () => {
+        addToWatchlist(watchlistBtn, movie);
+    });
+
   } catch (err) {
     modalBody.innerHTML = '<div class="error">Failed to load movie details.</div>';
     console.error(err);
   }
+}
+
+// Add movie to watchlist functionality
+function addToWatchlist(button, movie) {
+    const user = firebase.auth().currentUser;
+    if (!user) {
+        alert("You need to sign in before using this feature");
+        return;
+    }
+
+    const poster = movie.poster_path ? `${TMDB_IMAGE_BASE_URL}${movie.poster_path}` : 'https://via.placeholder.com/220x330?text=No+Poster';
+    const rating = movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A';
+    const year = movie.release_date ? new Date(movie.release_date).getFullYear() : 'Upcoming';
+
+    const movieData = { 
+        id: String(movie.id), 
+        title: movie.title, 
+        poster, 
+        rating, 
+        year: String(year),
+        watched: false,
+        addedAt: firebase.firestore.FieldValue.serverTimestamp()
+    };
+
+    const watchlistRef = db.collection('users').doc(user.uid).collection('watchlist').doc(String(movie.id));
+
+    button.disabled = true;
+    button.textContent = 'Checking...';
+
+    watchlistRef.get().then((doc) => {
+        if (doc.exists) {
+            button.textContent = 'Already Added';
+        } else {
+            watchlistRef.set(movieData)
+                .then(() => {
+                    button.textContent = 'Added to Watchlist';
+                })
+                .catch((error) => {
+                    console.error("Error adding to watchlist: ", error);
+                    button.disabled = false;
+                    button.textContent = '+ Add to Watchlist';
+                });
+        }
+    });
 }
 
 function closeModal() {

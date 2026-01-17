@@ -1,40 +1,87 @@
-// Initialize watchlist on page load
-document.addEventListener('DOMContentLoaded', loadWatchlist);
+// Initialize watchlist logic
+document.addEventListener('DOMContentLoaded', () => {
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            loadWatchlist(user);
+        } else {
+            showSignInPrompt();
+        }
+    });
+});
 
-function loadWatchlist() {
-    const watchlist = getWatchlistFromStorage();
+function showSignInPrompt() {
     const watchlistGrid = document.getElementById('watchlistGrid');
     const emptyState = document.getElementById('emptyState');
     const movieCount = document.getElementById('movieCount');
     const clearAllBtn = document.getElementById('clearAllBtn');
 
-    movieCount.textContent = `${watchlist.length} movies`;
-    clearAllBtn.disabled = watchlist.length === 0;
+    watchlistGrid.style.display = 'none';
+    emptyState.style.display = 'block';
+    
+    if (movieCount) movieCount.textContent = '0 movies';
+    if (clearAllBtn) clearAllBtn.disabled = true;
 
-    if (watchlist.length === 0) {
-        // Show empty state if no movies
-        watchlistGrid.style.display = 'none';
-        emptyState.style.display = 'block';
-    } else {
-        // Render movie cards
-        watchlistGrid.style.display = 'grid';
-        emptyState.style.display = 'none';
-        watchlistGrid.innerHTML = '';
-        watchlist.forEach(movie => {
-            watchlistGrid.appendChild(createWatchlistMovieCard(movie));
-        });
+    // Update empty state to ask for sign in
+    const emptyTitle = emptyState.querySelector('.empty-title');
+    const emptyDesc = emptyState.querySelector('.empty-description');
+    const discoverBtn = emptyState.querySelector('.discover-btn');
+
+    if (emptyTitle) emptyTitle.textContent = "Please Sign In";
+    if (emptyDesc) emptyDesc.textContent = "You need to sign in to view and manage your watchlist.";
+    if (discoverBtn) {
+        discoverBtn.textContent = "Sign In";
+        discoverBtn.href = "../pages/signIn.html";
     }
 }
 
-// Retrieve saved watchlist
-function getWatchlistFromStorage() {
-    const watchlist = localStorage.getItem('movieWatchlist');
-    return watchlist ? JSON.parse(watchlist) : [];
-}
+function loadWatchlist(user) {
+    const watchlistGrid = document.getElementById('watchlistGrid');
+    const emptyState = document.getElementById('emptyState');
+    const movieCount = document.getElementById('movieCount');
+    const clearAllBtn = document.getElementById('clearAllBtn');
 
-// Save updated watchlist
-function saveWatchlistToStorage(watchlist) {
-    localStorage.setItem('movieWatchlist', JSON.stringify(watchlist));
+
+    db.collection('users').doc(user.uid).collection('watchlist')
+        .orderBy('addedAt', 'desc')
+        .get()
+        .then((querySnapshot) => {
+            const watchlist = [];
+            querySnapshot.forEach((doc) => {
+                watchlist.push(doc.data());
+            });
+
+            if (movieCount) movieCount.textContent = `${watchlist.length} movies`;
+            if (clearAllBtn) clearAllBtn.disabled = watchlist.length === 0;
+
+            if (watchlist.length === 0) {
+                watchlistGrid.style.display = 'none';
+                emptyState.style.display = 'block';
+                
+                // Reset empty state text to default
+                const emptyTitle = emptyState.querySelector('.empty-title');
+                const emptyDesc = emptyState.querySelector('.empty-description');
+                const discoverBtn = emptyState.querySelector('.discover-btn');
+
+                if (emptyTitle) emptyTitle.textContent = "Your Watchlist is Empty";
+                if (emptyDesc) emptyDesc.textContent = "Start adding movies to your watchlist to see them here!";
+                if (discoverBtn) {
+                    discoverBtn.textContent = "Discover Movies";
+                    discoverBtn.href = "../index.html";
+                }
+
+            } else {
+                watchlistGrid.style.display = 'grid';
+                emptyState.style.display = 'none';
+                watchlistGrid.innerHTML = '';
+                watchlist.forEach(movie => {
+                    watchlistGrid.appendChild(createWatchlistMovieCard(movie));
+                });
+            }
+        })
+        .catch((error) => {
+            console.error("Error loading watchlist: ", error);
+            watchlistGrid.innerHTML = '<p style="color:white; text-align:center;">Error loading watchlist.</p>';
+        });
 }
 
 // Build movie card element
@@ -74,42 +121,65 @@ function createWatchlistMovieCard(movie) {
 
 // Remove single movie
 function removeFromWatchlist(movieId) {
-    let watchlist = getWatchlistFromStorage();
-    watchlist = watchlist.filter(movie => movie.id !== movieId);
-    saveWatchlistToStorage(watchlist);
-    loadWatchlist();
+    const user = firebase.auth().currentUser;
+    if (!user) return;
+
+    if (!confirm("Remove this movie from your watchlist?")) return;
+
+    db.collection('users').doc(user.uid).collection('watchlist').doc(String(movieId)).delete()
+        .then(() => {
+            loadWatchlist(user);
+        })
+        .catch((error) => {
+            console.error("Error removing movie: ", error);
+            alert("Failed to remove movie.");
+        });
 }
 
 // Clear all movies
 function clearAllWatchlist() {
-    localStorage.removeItem('movieWatchlist');
-    loadWatchlist();
+    const user = firebase.auth().currentUser;
+    if (!user) return;
+
+    if (!confirm("Are you sure you want to clear your ENTIRE watchlist?")) return;
+
+    // Firestore doesn't support deleting collections directly from client SDK efficiently for large collections,
+    // but for a user watchlist, fetching and batch deleting is fine.
+    db.collection('users').doc(user.uid).collection('watchlist').get()
+        .then((snapshot) => {
+            const batch = db.batch();
+            snapshot.docs.forEach((doc) => {
+                batch.delete(doc.ref);
+            });
+            return batch.commit();
+        })
+        .then(() => {
+            loadWatchlist(user);
+        })
+        .catch((error) => {
+            console.error("Error clearing watchlist:", error);
+            alert("Failed to clear watchlist.");
+        });
 }
 
 // Toggle watched status
 function toggleWatchedStatus(movieId) {
-    let watchlist = getWatchlistFromStorage();
-    const movie = watchlist.find(m => m.id === movieId);
-    if (movie) {
-        movie.watched = !movie.watched;
-    }
-    saveWatchlistToStorage(watchlist);
-    loadWatchlist();
-}
+    const user = firebase.auth().currentUser;
+    if (!user) return;
 
-document.addEventListener("DOMContentLoaded", function () {
-    const profileIcon = document.querySelector('.profile-icon');
-    const dropdown = document.querySelector('.profile-dropdown');
+    const docRef = db.collection('users').doc(user.uid).collection('watchlist').doc(String(movieId));
 
-    profileIcon.addEventListener('click', function (e) {
-        e.stopPropagation(); // prevent closing immediately
-        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-    });
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', function (e) {
-        if (!profileIcon.contains(e.target) && !dropdown.contains(e.target)) {
-            dropdown.style.display = 'none';
+    docRef.get().then((doc) => {
+        if (doc.exists) {
+            const isWatched = doc.data().watched;
+            docRef.update({ watched: !isWatched })
+                .then(() => {
+                    loadWatchlist(user);
+                })
+                .catch((error) => {
+                    console.error("Error updating status:", error);
+                    alert("Failed to update status.");
+                });
         }
     });
-});
+}

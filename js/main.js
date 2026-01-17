@@ -2,29 +2,34 @@ document.addEventListener('DOMContentLoaded', function() {
     const profileIcon = document.querySelector('.profile-icon');
     const dropdown = document.querySelector('.profile-dropdown');
 
-    if (profileIcon) {
-        profileIcon.addEventListener('click', function(event) {
-            event.stopPropagation();
-            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-        });
-
-        document.addEventListener('click', function(event) {
-            if (!profileIcon.contains(event.target)) {
-                dropdown.style.display = 'none';
-            }
-        });
-    }
-
     if (typeof firebase !== 'undefined') {
         firebase.auth().onAuthStateChanged((user) => {
             updateProfileUI(user);
+        });
+    }
+
+    if (profileIcon) {
+        profileIcon.addEventListener('click', function(event) {
+            event.stopPropagation();
+            if (dropdown) {
+                dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+            }
+        });
+
+        document.addEventListener('click', function(event) {
+            if (dropdown && !profileIcon.contains(event.target) && !dropdown.contains(event.target)) {
+                dropdown.style.display = 'none';
+            }
         });
     }
 });
 
 function updateProfileUI(user) {
     const dropdown = document.querySelector('.profile-dropdown');
-    if (!dropdown) return;
+    if (!dropdown) {
+        console.warn('Profile dropdown element not found');
+        return;
+    }
 
     const isPagesDir = window.location.pathname.includes('/pages/');
     const signInPath = isPagesDir ? 'signIn.html' : 'pages/signIn.html';
