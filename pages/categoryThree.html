@@ -28,39 +28,42 @@
                     </svg>
                 </div>
                 <div class="profile-dropdown">
-                    <a href="pages/signIn.html">Sign In</a>
-                    <a href="pages/signUp.html">Sign Up</a>
+                    <a href="signIn.html">Sign In</a>
+                    <a href="signUp.html">Sign Up</a>
                 </div>
             </div>
         </div>
     </header>
 
-        <!--Question Section -->
+    <!--Question Section -->
     <main class="question-section">
         <h1>Social Context</h1>
         <p>Answer the questions to find a movie that matches your mood!</p>
 
         <form class="question-form">
-            <label for="q1">1. Are you watching alone or with someone?</label>
-            <input type="text" id="q1" name="q1" placeholder="Type your answer..." />
+        <label for="q1">1. Who are you watching with?</label>
+        <input type="text" id="q1" name="q1" placeholder="Type your answer..." />
 
-            <label for="q2">2. Is this a movie night with friends, family, or just you and snacks?</label>
-            <input type="text" id="q2" name="q2" placeholder="Type your answer..." />
+        <label for="q2">2. Are you looking for something that will spark conversation or something purely for entertainment?</label>
+        <input type="text" id="q2" name="q2" placeholder="Type your answer..." />
 
-            <label for="q3">3. Would you prefer something romantic, thrilling, or family-friendly?</label>
-            <input type="text" id="q3" name="q3" placeholder="Type your answer..." />
+        <label for="q3">3. How much time do you have to watch?</label>
+        <input type="text" id="q3" name="q3" placeholder="Type your answer..." />
 
-            <button type="submit" class="submit-btn">LET'S FIND!</button>
+        <button type="submit" class="submit-btn">LET'S FIND!</button>
         </form>
         <div id="movie-results"></div>
     </main>
 
-    <!-- Footer Section -->
     <footer class="footer">
         <div class="container">
             <p>&copy; 2025 MovieMood. All rights reserved.</p>
         </div>
     </footer>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/main.js"></script>
     <script src="../js/category.js"></script>
 </body>
 </html>

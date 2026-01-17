@@ -1,5 +1,3 @@
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
 function signin(e) {
@@ -23,5 +21,3 @@ function signin(e) {
 }
 
 window.signin = signin;
-
-
