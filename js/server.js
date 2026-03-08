@@ -2,16 +2,13 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const OpenAI = require('openai');
+const { OPENAI_API_KEY, TMDB_API_KEY } = require('./secret.js');
 const app = express();
 const PORT = 3000;
 
-// API Keys
-const OPENAI_KEY = "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";
-const TMDB_API_KEY = 'f535b3af53df71c58b7219a11606a186';
-
 // Initialize OpenAI
 const openai = new OpenAI({
-    apiKey: OPENAI_KEY
+    apiKey: OPENAI_API_KEY
 });
 
 // Middleware

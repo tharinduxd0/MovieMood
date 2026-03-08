@@ -1,7 +1,5 @@
 // TMDB API Configuration
-const TMDB_API_KEY = 'f535b3af53df71c58b7219a11606a186';
-const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
-const TMDB_IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
+// API keys are now loaded from secret.js
 
 // Load BOTH sections on page load
 document.addEventListener('DOMContentLoaded', () => {
